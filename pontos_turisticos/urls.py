@@ -20,7 +20,7 @@ from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
-
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from atracoes.api.viewsets import AtracaoViewSet
 from avaliacoes.api.viewsets import AvaliacaoViewSet
@@ -39,4 +39,6 @@ urlpatterns = [
     path('', include(router.urls)),
     path('admin/', admin.site.urls),
     path('login', obtain_auth_token),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -27,7 +27,8 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['my-testing-python-api.herokuapp.com', 'localhost:8000']
+# ALLOWED_HOSTS = ['my-testing-python-api.herokuapp.com', 'localhost:8000']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    'rolepermissions',
     'django_filters',
     'core',
     'atracoes',
@@ -131,10 +133,14 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = 'imagens'
 MEDIA_URL = '/media/'
 
+
+ROLEPERMISSIONS_MODULE = 'pontos_turisticos.roles'
+
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
-    ]
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
 }

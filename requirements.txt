@@ -1,3 +1,4 @@
+django-role-permissions
 -r requirements-dev.txt
 gunicorn
 psycopg2
