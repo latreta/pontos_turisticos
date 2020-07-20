@@ -11,8 +11,3 @@ from enderecos.models import Endereco
 class EnderecoViewSet(ModelViewSet):
     queryset = Endereco.objects.all()
     serializer_class = EnderecoSerializer
-
-    def list(self, request, *args, **kwargs):
-        user = User.objects.get(id=1)
-        assign_role(user, 'doctor')
-        return HttpResponse(has_permission(user, 'create_medical_record'))
